@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Küslere Barış – Taslak</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand"><div class="logo"></div><h1>Küslere Barış</h1></div>
+      <nav>
+        <a class="btn-ghost btn" href="#home">Ana Sayfa</a>
+        <a class="btn-ghost btn" href="#advice">Akıl Alacağım</a>
+        <a class="btn-ghost btn" href="#comment">Puan Vereceğim</a>
+      </nav>
+    </header>
+
+    <!-- ANA SAYFA -->
+    <section id="home" class="hero">
+      <div>
+        <h2>Gönül alma yolunda yalnız değilsin 💜</h2>
+        <p>Başlık ve problemi yaz; topluluk “haklısın / haksızsın” oylasın.</p>
+        <div class="action-grid">
+          <a class="btn big" href="#advice">Akıl alacağım</a>
+          <a class="btn big alt" href="#comment">Puan vereceğim</a>
+        </div>
+        <div class="tabs mt-14">
+          <div class="chip">Anonim paylaşım</div>
+          <div class="chip">Başlık + 200 karakter</div>
+          <div class="chip">Oylama: Haklısın / Haksızsın</div>
+        </div>
+
+        <!-- Döngüyle değişen tavsiye + sabit güncelleme notu -->
+        <div class="card advice-box">
+          <h3 class="m-0">💡 Empati kurmadan çözüm olmaz.</h3>
+          <p class="meta">Son güncellemeler: Oylama sistemi eklendi, yorum zorunluluğu kaldırıldı.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SON HİKÂYELER: Ana bölümün ALTINDA tam genişlikte -->
+    <section id="latest" class="section">
+      <div class="card">
+        <div class="home-filter">
+          <h3 class="m-0">Son hikâyeler</h3>
+          <div class="hf-right">
+            <label>Sırala
+              <select id="homeSort">
+                <option value="new">En yeni</option>
+                <option value="most_comments">En çok oy</option>
+              </select>
+            </label>
+            <label>Göster
+              <select id="homeLimit">
+                <option value="3">3</option>
+                <option value="4" selected>4</option>
+              </select>
+            </label>
+          </div>
+        </div>
+        <div id="latestList" class="grid grid-2x2"></div>
+      </div>
+    </section>
+
+    <!-- AKIL ALACAĞIM (başta gizli, butonla açılır) -->
+    <section id="advice" class="section hidden">
+      <div class="card">
+        <h2 class="m-0 mb-10">Akıl alacağım</h2>
+        <p class="muted">Önce <strong>başlık</strong> yaz, sonra problemi kısaca anlat (200 karakter).</p>
+
+        <div class="field">
+          <label for="title">Başlık</label>
+          <input id="title" class="input" maxlength="40" placeholder="Kısa bir başlık…"/>
+          <div class="limit" id="titleLimit">0/40</div>
+        </div>
+
+        <div class="field">
+          <label for="story">Problemin</label>
+          <textarea id="story" maxlength="200" placeholder="Neler oldu, kısaca anlat…"></textarea>
+          <div class="limit" id="storyCount">0/200</div>
+        </div>
+
+        <div class="actions">
+          <button id="btnPreview" class="btn sm btn-ghost">Önizle</button>
+          <button id="btnPublish">Global alana gönder</button>
+          <span class="note muted">Paylaşımlar moderasyona tabidir.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- PUAN VERECEĞİM (başta gizli, butonla açılır) -->
+    <section id="comment" class="section hidden">
+      <div class="card">
+        <div class="comment-toolbar">
+          <h2 class="m-0">Puan vereceğim</h2>
+          <div class="ct-right">
+            <input id="commentQuery" class="input" placeholder="Başlığa göre ara…"/>
+            <button id="commentSort" class="btn sm btn-ghost">En yeni</button>
+          </div>
+        </div>
+        <p class="muted">Her hikâye için yalnızca <strong>bir oy</strong> verebilirsin: <strong>Haklısın</strong> veya <strong>Haksızsın</strong>.</p>
+        <div id="commentList" class="grid"></div>
+      </div>
+    </section>
+
+    <div class="footer">© 2025 Küslere Barış – Taslak sürüm.</div>
+  </div>
+
+  <div id="toast" class="toast">Kaydedildi</div>
+  <script src="script.js"></script>
+</body>
+</html>
