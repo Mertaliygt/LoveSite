@@ -137,15 +137,22 @@
 
   // ===== ROUTING =====
   const views={home:$("#home"),advice:$("#advice"),comment:$("#comment"),tests:$("#tests")};
-  const show=v=>{
-    Object.values(views).forEach(x=>x&&x.classList.add("hidden"));
-    (views[v]||views.home).classList.remove("hidden");
-    if(v==="home") renderLatest();
-    if(v==="comment") renderComments();
-    if(v==="tests") document.dispatchEvent(new CustomEvent("tests:show"));
-  };
+ const show = v => {
+  Object.values(views).forEach(x=>x&&x.classList.add("hidden"));
+  (views[v]||views.home).classList.remove("hidden");
+
+  if (v === "home") {
+    if (window.db) renderLatest();   // <— DB hazırsa hemen başlat
+  }
+  if (v === "comment") renderComments();
+  if (v === "tests") document.dispatchEvent(new CustomEvent("tests:show"));
+};
   const sync=()=>{
     const h=location.hash.replace("#","");
+     if (!h) {                   // <— boşsa home
+    h = "home";
+    // hash'i değiştirmeden sadece görünümü göster
+  }
     if(h==="advice")      show("advice");
     else if(h==="comment")show("comment");
     else if(h==="tests" || h.startsWith("quiz/")) show("tests");
@@ -214,25 +221,39 @@
 
   // ===== INIT =====
   document.addEventListener("DOMContentLoaded", ()=>{
-    // Hash linkleri
-    document.body.addEventListener("click",(e)=>{
-      const a=e.target.closest('a[href^="#"], button[data-target^="#"]'); if(!a) return;
-      const h=a.getAttribute("href")||a.getAttribute("data-target");
-      if(h?.startsWith("#")){ e.preventDefault(); if(location.hash!==h) location.hash=h; else sync(); }
-    });
-    window.addEventListener("hashchange", sync);
-
-    $("#homeSort")?.addEventListener("change", renderLatest);
-    $("#homeLimit")?.addEventListener("change", renderLatest);
-    $("#commentQuery")?.addEventListener("input", debounce(renderComments,200));
-
-    initCounters();
-    initPublish();
-    sync();
-
-    // Firestore hazır olduğunda ilk listeyi bas
-    const waitDB = setInterval(()=>{
-      if(window.db){ clearInterval(waitDB); renderLatest(); }
-    }, 100);
+  // Hash linkleri
+  document.body.addEventListener("click",(e)=>{
+    const a=e.target.closest('a[href^="#"], button[data-target^="#"]');
+    if(!a) return;
+    const h=a.getAttribute("href")||a.getAttribute("data-target");
+    if(h?.startsWith("#")){ e.preventDefault(); if(location.hash!==h) location.hash=h; else sync(); }
   });
+  window.addEventListener("hashchange", sync);
+
+  $("#homeSort")?.addEventListener("change", renderLatest);
+  $("#homeLimit")?.addEventListener("change", renderLatest);
+  $("#commentQuery")?.addEventListener("input", debounce(renderComments,200));
+
+  initCounters();
+  initPublish();
+
+  // 1) İlk açılışta boş hash ise home göster
+  if (!location.hash || location.hash === "#") {
+    // hash değiştirmeden de çalışsın:
+    show("home");
+  } else {
+    sync();
+  }
+
+  // 2) DB hazır olduğunda son hikâyeleri başlat (ikinci güvence)
+  const waitDB = setInterval(()=>{
+    if(window.db){
+      clearInterval(waitDB);
+      if (location.hash.replace("#","") === "" || location.hash === "#home") {
+        renderLatest();
+      }
+    }
+  }, 100);
+});
+
 })();

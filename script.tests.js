@@ -9,8 +9,7 @@
   // Küçük yardımcılar
   const shuffle = (arr) => arr.map(v=>[Math.random(),v]).sort((a,b)=>a[0]-b[0]).map(x=>x[1]);
 
-  // ——— ZOR TEST (10 soru) ———
-  // Puanlama: 0–4 arası ağırlıklar; toplam maksimum 40.
+
   const TEST_CATALOG = [
        
 
