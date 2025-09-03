@@ -576,7 +576,108 @@
     if(pct>=40) return {title:"Orta Derece Sapmacı",msg:"Liste var ama Nutella göz kırpınca kayıyorsun."};
     return {title:"Ekmek Hariç Her Şey",msg:"Bakkal seni görünce ‘bugün satış patlayacak’ diyor 😂"};
   }
+},{
+  id: "ruh-esi-komik-1",
+  name: "Ruh Eşin Ne?",
+  desc: "İnsan değil, yiyecek mi, hayvan mı yoksa eşya mı? 🤔",
+  questions: [
+    {
+      q: "Bir gününü en çok hangisi özetler?",
+      options: ["Kahve kokusu","Kedi miyavı","Telefon titreşimi","Fast food kokusu"],
+      scores: [2,3,1,0]
+    },
+    {
+      q: "Moralin bozulunca ilk yaptığın şey?",
+      options: ["Yemek sipariş ederim.","Kedilere sarılırım.","Arkadaşımı ararım.","Uyurum."],
+      scores: [0,3,2,1]
+    },
+    {
+      q: "Aşkı hangi nesne ile tarif edersin?",
+      options: ["Çikolata","Battaniye","WiFi","PlayStation"],
+      scores: [2,3,1,0]
+    },
+    {
+      q: "Biri seni aramadığında tepkin?",
+      options: ["‘Unuttu galiba’ derim.","Drama yaparım.","‘Ben de aramıyım’ derim.","Story atarım."],
+      scores: [3,0,2,1]
+    },
+    {
+      q: "Tatilde en sevdiğin aktivite?",
+      options: ["Yemek yemek","Deniz kenarı uyumak","Fotoğraf çekmek","Gece eğlencesi"],
+      scores: [2,3,1,0]
+    },
+    {
+      q: "Sabah kalktığında ilk düşündüğün şey?",
+      options: ["Kahve!","Uykuya devam.","Bugün kimle buluşsam?","Telefonum nerede?"],
+      scores: [2,3,1,0]
+    },
+    {
+      q: "Hayalindeki ruh eşi sana…",
+      options: ["Sıcacık tost yapar.","Sürekli kucak verir.","Mesajlara anında döner.","Senle oyun oynar."],
+      scores: [2,3,1,0]
+    }
+  ],
+  rubric(score, max){
+    const pct=Math.round((score/max)*100);
+    if(pct>=70) return { title:"Senin Ruh Eşin: Yumuşacık Battaniye 🛌", msg:"Her şeyi sarıp sarmalayan, huzur veren biri arıyorsun." };
+    if(pct>=40) return { title:"Senin Ruh Eşin: Çikolata 🍫", msg:"Hayatın tatlı tarafını seviyorsun, ruh eşin sana enerji verecek." };
+    return { title:"Senin Ruh Eşin: WiFi 📶", msg:"Bağlantı kesilince hayat duruyor. Ruh eşin: hızlı internet 😂" };
+  }
+},{
+  id: "ulke-komik-1",
+  name: "Hangi Ülkenin İnsanısın?",
+  desc: "Alışkanlıkların seni hangi ülkeye benzetiyor? 🌍",
+  questions: [
+    {
+      q: "Sabah kahvaltında olmazsa olmaz?",
+      options: ["Zeytin-peynir","Kruvasan","Sosisli-sucuklu","Pirinç lapası"],
+      scores: [3,2,1,0]
+    },
+    {
+      q: "Trafikte sıkışınca ne yaparsın?",
+      options: ["Korna çalarım.","Sessizce beklerim.","Şarkı açarım.","Küfrederim."],
+      scores: [3,2,1,0]
+    },
+    {
+      q: "Yemek sipariş ederken tercihin?",
+      options: ["Kebap","Pizza","Burger","Sushi"],
+      scores: [3,2,1,0]
+    },
+    {
+      q: "Tatilde nereye gitmek istersin?",
+      options: ["Ege sahilleri","Paris","New York","Tokyo"],
+      scores: [3,2,1,0]
+    },
+    {
+      q: "Maç izlerken tepkilerin?",
+      options: ["Bağırırım, söylenirim.","Sakin sakin izlerim.","Sadece reklamlara bakarım.","Uyurum."],
+      scores: [3,2,1,0]
+    },
+    {
+      q: "Mutfaktaki favori içeceğin?",
+      options: ["Çay","Şarap","Kola","Yeşil çay"],
+      scores: [3,2,1,0]
+    },
+    {
+      q: "Komşu ile ilişki?",
+      options: ["Kapıya tabak bırakırım.","Selamlaşırım.","Tanımam.","Yok sayarım."],
+      scores: [3,2,1,0]
+    },
+    {
+      q: "Çalışma tarzın?",
+      options: ["Gece gündüz çalışırım.","Programlı düzenli.","Daha çok lafta çalışırım.","Sessizlik + minimalizm."],
+      scores: [3,2,1,0]
+    }
+  ],
+  rubric(score, max){
+    const pct=Math.round((score/max)*100);
+    if(pct>=70) return { title:"Sen Tam Bir Türk 🇹🇷", msg:"Çay, kebap, komşuluk… DNA kodların Türk kahvaltısı kokuyor." };
+    if(pct>=40) return { title:"Senin Ruhun Avrupalı 🇫🇷", msg:"Düzen, kruvasan, şarap… İçindeki Parisli ortaya çıkıyor." };
+    return { title:"Senin İçinde Asyalı Var 🇯🇵", msg:"Minimalizm, sushi, yeşil çay… İçinden bir Japon çıktı 😂" };
+  }
 },
+
+
 
 
 
