@@ -159,9 +159,9 @@ button:hover,.btn:hover{ transform:translateY(-1px) }
 }
 .nav-backdrop.show { opacity: 1; pointer-events: auto; }
 
-@media (max-width: 760px){
+@media (max-width: 860px){
   header { position: relative; }
-  .brand { padding-right: 56px; } /* hamburger için boşluk */
+  .brand { padding-right: 66px; } /* hamburger için boşluk */
   nav.nav-links {
     position: fixed;
     top: 0;
