@@ -128,8 +128,8 @@ button:hover,.btn:hover{ transform:translateY(-1px) }
   position: absolute;
   right: 16px;
   top: 18px;
-  width: 36px;
-  height: 30px;
+  width: 44px;
+  height: 36px;
   background: transparent;
   border: none;
   cursor: pointer;
@@ -137,9 +137,9 @@ button:hover,.btn:hover{ transform:translateY(-1px) }
 }
 .menu-toggle span {
   display: block;
-  height: 3px;
-  margin: 6px 0;
-  background: var(--text);
+  height: 4px;
+  margin: 7px 0;
+  background: linear-gradient(90deg,#ff0080,#7928ca);
   border-radius: 2px;
   transition: .2s;
 }
