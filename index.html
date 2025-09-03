@@ -9,14 +9,26 @@
 <body>
   <div class="container">
     <header>
-      <div class="brand"><div class="logo"></div><h1>Belki Sen Haklısın ?!</h1></div>
-      <nav>
-        <a class="btn-ghost btn" href="#home">Ana Sayfa</a>
-        <a class="btn-ghost btn" href="#advice">Akıl Alacağım</a>
-        <a class="btn-ghost btn" href="#comment">Puan Vereceğim</a>
-        <a class="btn-ghost btn" href="#tests">Testler</a>
-      </nav>
-    </header>
+  <div class="brand">
+    <div class="logo"></div>
+    <h1>Belki Sen Haklısın ?!</h1>
+  </div>
+  <!-- Menü -->
+  <nav class="nav-links" id="navLinks">
+    <a class="btn-ghost btn" href="#home">Ana Sayfa</a>
+    <a class="btn-ghost btn" href="#advice">Akıl Alacağım</a>
+    <a class="btn-ghost btn" href="#comment">Puan Vereceğim</a>
+    <a class="btn-ghost btn" href="#tests">Testler</a>
+  </nav>
+  <!-- Hamburger Butonu -->
+  <button class="menu-toggle" id="menuToggle" aria-label="Menüyü aç/kapat" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<!-- Backdrop (arka plan karartması) -->
+<div class="nav-backdrop" id="navBackdrop"></div>
+
 
     <!-- ANA SAYFA -->
     <section id="home" class="hero">
@@ -127,5 +139,6 @@
   <script src="firebase.init.js"></script>
   <script src="script.firestore.js"></script>
   <script src="script.tests.js"></script>
+  <script src="script.nav.js"></script>
 </body>
 </html>

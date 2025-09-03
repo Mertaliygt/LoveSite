@@ -122,3 +122,78 @@ button:hover,.btn:hover{ transform:translateY(-1px) }
 .results-box h2{ font-size:24px; margin-bottom:10px }
 .results-box .score{ font-size:48px; font-weight:bold; color:var(--accent2); }
 .results-box .message{ margin-top:10px; font-size:16px; color:var(--muted) }
+/* === Responsive Navbar (Mobile Drawer) === */
+.menu-toggle {
+  display: none;
+  position: absolute;
+  right: 16px;
+  top: 18px;
+  width: 36px;
+  height: 30px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 1100;
+}
+.menu-toggle span {
+  display: block;
+  height: 3px;
+  margin: 6px 0;
+  background: var(--text);
+  border-radius: 2px;
+  transition: .2s;
+}
+.menu-toggle.active span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+.menu-toggle.active span:nth-child(2) { opacity: 0; }
+.menu-toggle.active span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+
+.nav-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.4);
+  backdrop-filter: blur(2px);
+  opacity: 0;
+  pointer-events: none;
+  transition: .2s;
+  z-index: 900;
+}
+.nav-backdrop.show { opacity: 1; pointer-events: auto; }
+
+@media (max-width: 760px){
+  header { position: relative; }
+  .brand { padding-right: 56px; } /* hamburger için boşluk */
+  nav.nav-links {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 260px;
+    background: #0f1229;
+    border-left: 1px solid var(--ring);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 70px 14px 14px;
+    box-shadow: -12px 0 30px rgba(0,0,0,.35);
+    transform: translateX(100%);
+    transition: transform .25s ease;
+    z-index: 1000;
+  }
+  nav.nav-links.open { transform: translateX(0); }
+  nav.nav-links .btn { width: 100%; text-align: left; }
+  .menu-toggle { display: block; }
+}
+
+@media (min-width: 761px){
+  .nav-backdrop { display: none; }
+  nav.nav-links {
+    position: static;
+    transform: none !important;
+    height: auto;
+    width: auto;
+    box-shadow: none;
+    padding: 0;
+    flex-direction: row;
+  }
+}
+body.menu-open { overflow: hidden; }
