@@ -1,5 +1,4 @@
-// firebase.init.js
-// BURAYI Firebase Console'dan aldığın config ile doldur
+
 window.FIREBASE_CONFIG = {
    apiKey: "AIzaSyBWmKgj-w0_deNrF2bxiMS0MUlPszDiF7I",
   authDomain: "loveweb-5ccf3.firebaseapp.com",

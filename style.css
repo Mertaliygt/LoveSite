@@ -1,9 +1,14 @@
 :root{ --bg1:#0f1020; --bg2:#121629; --grad1:#1b2440; --grad2:#2a0e46; --accent:#ff4da6; --accent2:#8b5cf6; --text:#e6e6f0; --muted:#a9adc3; --ring:#2a2f55 }
 *{ box-sizing:border-box } html,body{ height:100% }
-body{ margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;
-  background:radial-gradient(1200px 600px at 20% 0%,var(--grad2),transparent),
-             radial-gradient(900px 500px at 100% 100%,var(--grad1),transparent),
-             linear-gradient(180deg,var(--bg1),var(--bg2)); color:var(--text) }
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;
+  background:
+    radial-gradient(1200px 600px at 20% 0%,var(--grad2),transparent),
+    radial-gradient(900px 500px at 100% 100%,var(--grad1),transparent),
+    linear-gradient(180deg,var(--bg1),var(--bg2));
+  color:var(--text)
+}
 
 .container{ max-width:980px; margin:auto; padding:20px }
 header{ display:flex; align-items:center; justify-content:space-between; gap:16px; padding:14px 0 }
@@ -83,4 +88,37 @@ button:hover,.btn:hover{ transform:translateY(-1px) }
 /* ==== KART TAŞMA DÜZELTMELERİ ==== */
 .story{ max-width:100%; overflow:hidden; overflow-wrap:break-word; word-wrap:break-word; white-space:normal; display:flex; flex-direction:column; justify-content:space-between; }
 .story .title, .story .body{ overflow-wrap:anywhere; word-break:break-word; min-width:0; }
-.story .body{ display:-webkit-box; -webkit-box-ori
+.story .body{ display:-webkit-box; -webkit-box-orient:vertical; }
+
+/* Testler bölümü stilleri */
+.test-list{ display:grid; gap:12px }
+.test-item{ display:flex; align-items:center; justify-content:space-between; border:1px solid var(--ring); border-radius:12px; padding:10px 12px; background:#0f1229; }
+.test-item .meta{ display:flex; flex-direction:column; gap:2px; }
+.test-item .name{ font-weight:600; }
+.test-item .desc{ font-size:12px; color:var(--muted) }
+.test-item .actions{ display:flex; gap:8px }
+.test-item .btn{ flex-shrink:0 }
+
+.quiz-host{ display:flex; flex-direction:column; gap:12px }
+.quiz-header{ display:flex; align-items:center; justify-content:space-between }
+.quiz-title{ font-size:18px; font-weight:700 }
+.quiz-progress{ font-size:12px; color:var(--muted) }
+
+.quiz-card{ border:1px solid var(--ring); border-radius:12px; padding:12px; background:#11142b; }
+.quiz-q{ font-weight:600; margin-bottom:8px }
+.quiz-options{ display:flex; flex-direction:column; gap:8px }
+.quiz-option{
+  display:flex; align-items:center; gap:10px; border:1px solid var(--ring); border-radius:10px; padding:10px;
+  cursor:pointer; user-select:none; background:#0e1226;
+}
+.quiz-option input{ accent-color:var(--accent); }
+.quiz-option:hover{ border-color:var(--accent2); }
+
+.quiz-actions{ display:flex; justify-content:space-between; gap:10px }
+.quiz-actions .btn{ flex-grow:1 }
+
+/* Sonuç ekranı */
+.results-box{ text-align:center; padding:20px; border:1px solid var(--ring); border-radius:14px; background:#11142b }
+.results-box h2{ font-size:24px; margin-bottom:10px }
+.results-box .score{ font-size:48px; font-weight:bold; color:var(--accent2); }
+.results-box .message{ margin-top:10px; font-size:16px; color:var(--muted) }

@@ -136,9 +136,21 @@
   }
 
   // ===== ROUTING =====
-  const views={home:$("#home"),advice:$("#advice"),comment:$("#comment")};
-  const show=v=>{Object.values(views).forEach(x=>x&&x.classList.add("hidden")); (views[v]||views.home).classList.remove("hidden"); if(v==="home") renderLatest(); if(v==="comment") renderComments();};
-  const sync=()=>{const h=location.hash.replace("#",""); if(h==="advice")show("advice"); else if(h==="comment")show("comment"); else show("home");};
+  const views={home:$("#home"),advice:$("#advice"),comment:$("#comment"),tests:$("#tests")};
+  const show=v=>{
+    Object.values(views).forEach(x=>x&&x.classList.add("hidden"));
+    (views[v]||views.home).classList.remove("hidden");
+    if(v==="home") renderLatest();
+    if(v==="comment") renderComments();
+    if(v==="tests") document.dispatchEvent(new CustomEvent("tests:show"));
+  };
+  const sync=()=>{
+    const h=location.hash.replace("#","");
+    if(h==="advice")      show("advice");
+    else if(h==="comment")show("comment");
+    else if(h==="tests" || h.startsWith("quiz/")) show("tests");
+    else show("home");
+  };
 
   // ===== FORM =====
   const PUBLISH_COOLDOWN_MS = 60*1000;
@@ -150,8 +162,7 @@
   const canPost=()=>Date.now()-parseInt(localStorage.getItem(LAST_POST_TS)||"0",10)>PUBLISH_COOLDOWN_MS;
 
   function initCounters(){
-    // storyText: hem #storyText hem #story destekle
-    const storyText = getEl("#storyText", "#story");
+    const storyText = (["#storyText", "#story"].map(s=>$(s)).find(Boolean));
     const count = $("#storyCount");
     const upd=()=>{
       if(!storyText||!count) return;
@@ -166,16 +177,15 @@
   function initPublish(){
     $("#btnPublish")?.addEventListener("click", async ()=>{
       try{
-        // Hem eski hem yeni id'leri destekle
-        const titleEl  = getEl("#storyTitle", "#title");
-        const textEl   = getEl("#storyText",  "#story");
-        const cityEl   = getEl("#storyCity",  "#city");
-        const handleEl = getEl("#storyHandle","#handle");
+        const titleEl  = (["#storyTitle", "#title"].map(s=>$(s)).find(Boolean));
+        const textEl   = (["#storyText",  "#story"].map(s=>$(s)).find(Boolean));
+        const cityEl   = (["#storyCity",  "#city"].map(s=>$(s)).find(Boolean));
+        const handleEl = (["#storyHandle","#handle"].map(s=>$(s)).find(Boolean));
 
-        const title  = clean(titleEl?.value);
-        const text   = clean(textEl?.value);
-        const city   = clean(cityEl?.value);
-        const handle = clean(handleEl?.value);
+        const title  = (titleEl?.value||"").replace(/\s+/g," ").trim();
+        const text   = (textEl?.value||"").replace(/\s+/g," ").trim();
+        const city   = (cityEl?.value||"").replace(/\s+/g," ").trim();
+        const handle = (handleEl?.value||"").replace(/\s+/g," ").trim();
 
         if(!title) return toast("Başlık zorunlu");
         if(title.length>40) return toast("Başlık 40 karakteri aşamaz");

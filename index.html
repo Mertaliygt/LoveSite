@@ -14,6 +14,7 @@
         <a class="btn-ghost btn" href="#home">Ana Sayfa</a>
         <a class="btn-ghost btn" href="#advice">Akıl Alacağım</a>
         <a class="btn-ghost btn" href="#comment">Puan Vereceğim</a>
+        <a class="btn-ghost btn" href="#tests">Testler</a>
       </nav>
     </header>
 
@@ -32,7 +33,6 @@
           <div class="chip">Oylama: Haklısın / Haksızsın</div>
         </div>
 
-        <!-- Döngüyle değişen tavsiye + sabit güncelleme notu -->
         <div class="card advice-box">
           <h3 class="m-0">💡 Empati kurmadan çözüm olmaz.</h3>
           <p class="meta">Son güncellemeler: Oylama sistemi eklendi, yorum zorunluluğu kaldırıldı.</p>
@@ -40,7 +40,7 @@
       </div>
     </section>
 
-    <!-- SON HİKÂYELER: Ana bölümün ALTINDA tam genişlikte -->
+    <!-- SON HİKÂYELER -->
     <section id="latest" class="section">
       <div class="card">
         <div class="home-filter">
@@ -64,7 +64,7 @@
       </div>
     </section>
 
-    <!-- AKIL ALACAĞIM (başta gizli, butonla açılır) -->
+    <!-- AKIL ALACAĞIM -->
     <section id="advice" class="section hidden">
       <div class="card">
         <h2 class="m-0 mb-10">Akıl alacağım</h2>
@@ -90,7 +90,7 @@
       </div>
     </section>
 
-    <!-- PUAN VERECEĞİM (başta gizli, butonla açılır) -->
+    <!-- PUAN VERECEĞİM -->
     <section id="comment" class="section hidden">
       <div class="card">
         <div class="comment-toolbar">
@@ -105,12 +105,27 @@
       </div>
     </section>
 
+    <!-- TESTLER -->
+    <section id="tests" class="section hidden">
+      <div class="card">
+        <div class="comment-toolbar">
+          <h2 class="m-0">Testler</h2>
+          <div class="ct-right">
+            <button id="btnShowAllTests" class="btn sm btn-ghost">Tüm testler</button>
+          </div>
+        </div>
+        <div id="testList" class="test-list"></div>
+        <div id="quizHost" class="quiz-host" style="display:none"></div>
+      </div>
+    </section>
+
     <div class="footer">© 2025 MertAli-Bunları Yaşayan Tek Kişi Değilsin</div>
   </div>
 
   <div id="toast" class="toast">Kaydedildi</div>
-  
+
   <script src="firebase.init.js"></script>
-<script src="script.firestore.js"></script>
+  <script src="script.firestore.js"></script>
+  <script src="script.tests.js"></script>
 </body>
 </html>
