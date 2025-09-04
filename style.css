@@ -275,3 +275,15 @@ text-decoration: none;
   0% { transform: translateX(0); }
   100% { transform: translateX(-100%); }
 }
+@media (max-width: 760px){
+  body{
+    background:
+      radial-gradient(1200px 600px at 20% 0%, var(--grad2), transparent),
+      /* alt-sağ radyali kaldırıldı */
+      linear-gradient(180deg, var(--bg1), var(--bg2));
+  }
+}
+.footer{ background: transparent; border: 0; padding-bottom: 16px; }
+.footer .social a{
+  background: none; border: none; padding: 0; box-shadow: none;
+}
