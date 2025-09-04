@@ -210,6 +210,10 @@ body.menu-open { overflow: hidden; }
   display: flex;
   justify-content: center;
   gap: 32px;
+  background: none;
+  border:none;
+  padding: 0;
+  box-shadow: none;
 }
 .icon-link {
  display: flex;
