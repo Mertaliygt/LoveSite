@@ -215,6 +215,14 @@ body.menu-open { overflow: hidden; }
   padding: 0;
   box-shadow: none;
 }
+.footer .social a:hover {
+  color: var(--accent); /* sadece renk değişsin */
+}
+.footer .social svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
 .icon-link {
  display: flex;
  align-items: center;
