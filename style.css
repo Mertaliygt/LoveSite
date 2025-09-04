@@ -197,3 +197,29 @@ button:hover,.btn:hover{ transform:translateY(-1px) }
   }
 }
 body.menu-open { overflow: hidden; }
+ 
+/* MAİL İCON AYARLARI */
+.footer .social {
+
+  margin-top: 8px;
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+}
+.icon-link {
+ display: flex;
+ align-items: center;
+ font-size:14px;
+ gap: 6px;
+ color: var(--muted);
+text-decoration: none;
+ transition: color .2s;
+}
+.icon-link:hover {
+   color: var(--accent2); 
+  }
+
+  .icon-link svg {
+    width: 18px;
+    height: 18px;
+  }
