@@ -253,6 +253,8 @@ text-decoration: none;
   .top-banner { 
     
     width: 100%;
+   
+    border-radius: 20px;
     overflow: hidden;
     background: linear-gradient(90deg,var(--accent),var(--accent2));
     color: #fff;
