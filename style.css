@@ -10,6 +10,10 @@ body{
     linear-gradient(180deg,var(--bg1),var(--bg2));
   color:var(--text)
 }
+a {
+   text-decoration: none;
+
+}
 
 .container{ max-width:1100px; margin:auto; padding:22px }
 header{ display:flex; align-items:center; justify-content:space-between; gap:16px; padding:14px 0 }
