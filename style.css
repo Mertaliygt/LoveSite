@@ -210,10 +210,19 @@ body.menu-open { overflow: hidden; }
   display: flex;
   justify-content: center;
   gap: 32px;
-  background: none;
-  border:none;
-  padding: 0;
-  box-shadow: none;
+  
+}
+.footer .social a {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 14px;
+  text-decoration: none;
+  background: none;     /* kutu efekti olmasın */
+  border: none;         /* çerçeve olmasın */
+  padding: 0;           /* ekstra boşluk olmasın */
+  box-shadow: none;     /* gölge olmasın */
 }
 .footer .social a:hover {
   color: var(--accent); /* sadece renk değişsin */
