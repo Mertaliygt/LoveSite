@@ -62,12 +62,14 @@ button:hover,.btn:hover{ transform:translateY(-1px) }
   .grid.cols-2{ grid-template-columns:1fr } 
   .grid-2x2{ grid-template-columns:1fr } 
 }
+  /* HİKAYELERİN AYARLARI TUTULUYOR*/ 
 
 .story{ border:1px solid var(--ring); background:rgba(17,20,43,.7); border-radius:14px; padding:14px }
 .story .meta{ display:flex; gap:10px; align-items:center; color:var(--muted); font-size:12px }
 .story .title{ margin:6px 0 4px 0; font-weight:700 }
-.story .body{ color:#dfe1f5 }
+.story .body{ font-family: 'Times New Roman', Times, serif;color:#dfe1f5 }
 
+/* HİKAYELERİN AYARLARI TUTULUYOR*/
 .vote-box{ display:flex; gap:8px; margin-top:10px; flex-wrap:wrap; align-items:center }
 .vote-btn{ background:#0f1229; border:1px solid var(--ring); color:#e6e6f0; }
 .vote-btn:hover{ border-color:var(--accent2); }
