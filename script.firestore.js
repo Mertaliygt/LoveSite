@@ -225,7 +225,7 @@
   };
 
   // ===== FORM =====
-  const PUBLISH_COOLDOWN_MS = 60 * 1000;
+  const PUBLISH_COOLDOWN_MS = 10 * 60 * 1000;
   const LAST_POST_TS = "kb_last_post_time";
   const BAD_WORDS = ["salak","aptal","lanet"];
 
@@ -358,7 +358,7 @@ async function renderComments(){
         if (!text) return toast("Problem boş olamaz");
         if (text.length > 200) return toast("200 karakter sınırı");
         if (low(text)) return toast("Biraz daha açıklayıcı yaz");
-        if (!canPost()) return toast("Lütfen 1 dakika sonra tekrar dene");
+        if (!canPost()) return toast("Lütfen 10 dakika sonra tekrar dene");
         if (bad(title) || bad(text)){
           const ok = confirm("Uygunsuz kelime tespit edildi. Yine de gönderilsin mi?");
           if (!ok) return;
