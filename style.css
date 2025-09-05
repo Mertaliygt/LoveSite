@@ -124,18 +124,22 @@ button:hover,.btn:hover{ transform:translateY(-1px) }
 
 /* Puan vereceğim sıralama grubu için*/
 /* === Puan vereceğim → sayfalama === */
-.perpage{ display:flex; align-items:center; gap:6px; font-size:12px; color:var(--muted) }
+/* === Yorumlar: Google tarzı sayfalama === */
 .pager{
-  display:flex; gap:6px; justify-content:flex-end; margin-top:10px; flex-wrap:wrap;
+  display:flex; gap:6px; justify-content:center; align-items:center;
+  margin-top:12px; flex-wrap:wrap;
 }
-.pager .page-btn{
-  min-width:36px; height:36px; padding:0 10px;
+.pager a{
   display:inline-flex; align-items:center; justify-content:center;
-  border:1px solid var(--ring); border-radius:10px; background:#0f1229; color:var(--text);
-  cursor:pointer; font-weight:600; user-select:none;
+  min-width:28px; height:28px; padding:0 8px;
+  color:var(--muted); text-decoration:none; border-radius:8px;
+  border:1px solid transparent; background:transparent;
 }
-.pager .page-btn.active{ background:linear-gradient(135deg,var(--accent2),var(--accent)); color:#fff }
-.pager .page-btn[disabled]{ opacity:.5; cursor:not-allowed }
+.pager a:hover{ color:#fff; border-color:var(--ring); }
+.pager a.active{
+  color:#fff; background:#0f1229; border-color:var(--ring);
+  font-weight:700;
+}
 
 
 
@@ -307,3 +311,16 @@ text-decoration: none;
 .footer .social a{
   background: none; border: none; padding: 0; box-shadow: none;
 }
+
+/* DAHA FAZLA BUTONU İÇİN*/
+
+.more{ display:flex; justify-content:center; margin-top:12px; }
+.page-btn{
+  min-width:120px; height:36px; padding:0 14px;
+  display:inline-flex; align-items:center; justify-content:center;
+  border:1px solid var(--ring); border-radius:10px;
+  background:#0f1229; color:var(--text); font-weight:600; cursor:pointer;
+}
+
+.page-btn[disabled]{ opacity:.5; cursor:not-allowed }
+/* DAHA FAZLA BUTONU İÇİN*/

@@ -249,6 +249,97 @@
     upd();
   }
 
+  /* SAYFALAMA KISMI İÇİN */
+    // ====== PUAN VERECEĞİM: Google tarzı sayfalama ======
+// ====== PUAN VERECEĞİM: Google tarzı sayfalama (sabit 10) ======
+// ====== PUAN VERECEĞİM: Google tarzı sayfalama (sağlam) ======
+// ====== PUAN VERECEĞİM: Google tarzı sayfalama (sağlam) ======
+// ====== PUAN VERECEĞİM: Load More (3'er 3'er) ======
+const PAGE_SIZE = 10;
+
+// Durum
+let L_LIST = [];        // ekrana basılan toplam öğeler
+let L_LAST = null;      // Firestore cursor: son doküman
+let L_DONE = false;     // daha fazla yok mu?
+let L_LOADING = false;  // aynı anda iki istek olmasın
+
+// Element yardımcıları (her seferinde taze seç)
+const elList   = () => document.getElementById("commentList");
+const elMore   = () => document.getElementById("commentMore");
+const elMoreBtn= () => document.getElementById("btnMore");
+const elQuery  = () => document.getElementById("commentQuery");
+
+// Bir part getiren fonksiyon
+async function fetchNextBatch(){
+  if (L_LOADING || L_DONE) return [];
+  L_LOADING = true;
+
+  const db = requireDB();
+  let q = db.collection("stories").orderBy("createdAt","desc").limit(PAGE_SIZE);
+  if (L_LAST) q = q.startAfter(L_LAST);
+
+  const snap = await q.get();
+  const docs = snap.docs;
+
+  if (docs.length < PAGE_SIZE) L_DONE = true;
+  if (docs.length) L_LAST = docs[docs.length - 1];
+
+  const items = docs.map(d => ({ id:d.id, ...d.data() }));
+  L_LIST.push(...items);
+
+  L_LOADING = false;
+  return items;
+}
+
+// Ekrana bas
+function renderList(){
+  const list = elList(); if(!list) return;
+  const term = (elQuery()?.value || "").trim().toLowerCase();
+  const filtered = term ? L_LIST.filter(s => (s.title||"").toLowerCase().includes(term)) : L_LIST;
+
+  list.innerHTML = "";
+  if (!filtered.length){
+    list.innerHTML = `<div class="empty">Gösterilecek kayıt yok.</div>`;
+  } else {
+    filtered.forEach(s => list.appendChild(storyCard(s, true)));
+  }
+
+  // "Daha fazla" butonu durumu
+  const btn = elMoreBtn();
+  if(btn){
+    btn.disabled = L_DONE;
+    btn.textContent = L_DONE ? "Hepsi bu kadar" : "Daha fazla yükle";
+  }
+  if (elMore()) elMore().style.display = (L_LIST.length ? "flex" : "none");
+}
+
+// Dışarıdan (router) çağrılan ana fonksiyon
+async function renderComments(){
+  // sıfırla
+  L_LIST = []; L_LAST = null; L_DONE = false; L_LOADING = false;
+
+  const list = elList(); if(list) list.innerHTML = `<div class="empty">Yükleniyor…</div>`;
+  await fetchNextBatch();   // ilk 3
+  renderList();
+
+  // olaylar — her girişte güvence
+  elMoreBtn()?.addEventListener("click", async ()=>{
+    await fetchNextBatch();
+    renderList();
+  });
+
+  // arama sadece yüklenmiş kayıtlar içinde filtreler (anında)
+  const onInput = (e)=>{ if(e.target===elQuery()) renderList(); };
+  document.removeEventListener("input", onInput); // çift eklenmesin
+  document.addEventListener("input", onInput);
+}
+
+
+
+  /* SAYFALAMA KISMI İÇİN */
+
+
+
   function initPublish(){
     $("#btnPublish")?.addEventListener("click", async ()=>{
       try{
@@ -296,16 +387,15 @@
   document.addEventListener("DOMContentLoaded", ()=>{
     // Tek sayfa hash linkleri (#home/#advice/#comment/#tests)
     document.body.addEventListener("click", (e)=>{
-      const a = e.target.closest('a[href^="#"], button[data-target^="#"]');
-      if(!a) return;
-      const h = a.getAttribute("href") || a.getAttribute("data-target");
-      if (h?.startsWith("#")){
-        e.preventDefault();
-        if (location.hash !== h) location.hash = h;
-        else sync();
-      }
-    });
-
+  const a = e.target.closest('a[href^="#"], button[data-target^="#"]');
+  if(!a) return;
+  const h = a.getAttribute("href") || a.getAttribute("data-target");
+  if (h?.startsWith("#")){
+    e.preventDefault();
+    if (location.hash !== h) location.hash = h;
+    else sync();
+  }
+});
     window.addEventListener("hashchange", sync);
 
     $("#homeSort")?.addEventListener("change", renderLatest);
