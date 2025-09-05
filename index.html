@@ -13,9 +13,10 @@
   <div class="container">
     <div class="top-banner">
   <div class="marquee">
-    <span>💜 Empati kurmadan çözüm olmaz</span>
-    <span>✨ Güncellemeler: Testler bölümü eklendi</span>
-    <span>🌙 İlişkilerde güven, en büyük armağandır</span>
+    <span>💜 Empati kurmadan çözüm olmaz.</span>
+    <span>✨ Güncellemeler: Testler bölümü eklendi.</span>
+    <span>🌙 İlişkilerde güven, en büyük armağandır.</span>
+    <span> Son Güncelleme Tarihi: 05.09.2025</span>
   </div>
 </div>
 
@@ -24,12 +25,14 @@
   <div class="brand">
     <div class="logo"></div>
     <h1>Belki Sen Haklısın ?!</h1>
+    
   </div>
   <!-- Menü -->
   <nav class="nav-links" id="navLinks">
     <a class="btn-ghost btn" href="#home">Ana Sayfa</a>
     <a class="btn-ghost btn" href="#advice">Akıl Alacağım🐟</a>
     <a class="btn-ghost btn" href="#comment">Puan Vereceğim🔫</a>
+    <div id="commentPager" class="pager"></div>
     <a class="btn-ghost btn" href="#tests">Testler📝</a>
   </nav>
   <!-- Hamburger Butonu -->
@@ -78,7 +81,7 @@
             </label>
             <label>Göster
               <select id="homeLimit">
-                <option value="3">3</option>
+                <option value="3" >3</option>
                 <option value="4" selected>4</option>
               </select>
             </label>
@@ -118,10 +121,26 @@
     <section id="comment" class="section hidden">
       <div class="card">
         <div class="comment-toolbar">
+          <div class="ct-right">
+  
+
+  <!-- Sayfa başına -->
+  <label class="perpage">
+    <span>Göster</span>
+    <select id="commentPerPage" class="input" style="width:auto">
+      <option value="4">4</option>
+      <option value="10" selected>10</option>
+    </select>
+  </label>
+
+  <!-- Sıralama (varsa kalsın) -->
+  <button id="commentSort" class="btn sm btn-ghost">En yeni</button>
+</div>
+
           <h2 class="m-0">Puan vereceğim</h2>
           <div class="ct-right">
             <input id="commentQuery" class="input" placeholder="Başlığa göre ara…"/>
-            <button id="commentSort" class="btn sm btn-ghost">En yeni</button>
+            <button id="commentSort" class="btn sm btn-ghost">Ara</button>
           </div>
         </div>
         <p class="muted">Her hikâye için yalnızca <strong>bir oy</strong> verebilirsin: <strong>Haklısın</strong> veya <strong>Haksızsın</strong>.</p>
